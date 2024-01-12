@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Feed</title>
+</head>
+<body>
+    <img id="live_stream" alt="Live Stream">
+    <script>
+        function updateImage() {
+            fetch('/api/video_feed/')
+                .then(response => response.json())
+                .then(data => {
+                    const img = document.getElementById('live_stream');
+                    img.src = 'data:image/jpeg;base64,' + data.image;
+                    setTimeout(updateImage, 100);  // Update every 100 milliseconds
+                });
+        }
+
+        updateImage();  // Start the update loop
+    </script>
+</body>
+</html>

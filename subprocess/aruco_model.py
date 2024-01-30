@@ -43,7 +43,7 @@ while (vid.isOpened()):
     dict_aruco = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
     parameters =  cv2.aruco.DetectorParameters()
     detector = cv2.aruco.ArucoDetector(dict_aruco, parameters)
-
+    
     arucoParams = detector.getDetectorParameters
     markerCorners, markerIds, rejectedCandidates = detector.detectMarkers(frame)
         
@@ -56,6 +56,7 @@ while (vid.isOpened()):
     
     opencv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA) 
   
+    
     captured_image = Image.fromarray(opencv_image) 
     photo_image = ImageTk.PhotoImage(image=captured_image) 
     label_widget.photo_image = photo_image 
